@@ -27,6 +27,7 @@ No modules.
 | [alkira_billing_tag.tag](https://registry.terraform.io/providers/alkiranet/alkira/latest/docs/data-sources/billing_tag) | data source |
 | [alkira_credential.credential](https://registry.terraform.io/providers/alkiranet/alkira/latest/docs/data-sources/credential) | data source |
 | [alkira_group.group](https://registry.terraform.io/providers/alkiranet/alkira/latest/docs/data-sources/group) | data source |
+| [alkira_policy_prefix_list.prefix](https://registry.terraform.io/providers/alkiranet/alkira/latest/docs/data-sources/policy_prefix_list) | data source |
 | [alkira_segment.segment](https://registry.terraform.io/providers/alkiranet/alkira/latest/docs/data-sources/segment) | data source |
 
 ## Inputs
@@ -37,14 +38,21 @@ No modules.
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | AWS region of the VPC being connected | `string` | n/a | yes |
 | <a name="input_billing_tags"></a> [billing\_tags](#input\_billing\_tags) | Billing tags associated with connector | `list(string)` | `[]` | no |
 | <a name="input_credential"></a> [credential](#input\_credential) | Name of credential to use for onboarding VPC | `string` | n/a | yes |
+| <a name="input_custom_routing"></a> [custom\_routing](#input\_custom\_routing) | Controls if custom routing is used from cloud network to CXP | `bool` | `false` | no |
+| <a name="input_custom_tgw"></a> [custom\_tgw](#input\_custom\_tgw) | Controls if specific subnets are used for linked availability zones | `bool` | `false` | no |
 | <a name="input_cxp"></a> [cxp](#input\_cxp) | CXP to provision connector in | `string` | n/a | yes |
+| <a name="input_direct_inter_vpc"></a> [direct\_inter\_vpc](#input\_direct\_inter\_vpc) | Enable direct inter-vpc communication | `bool` | `false` | no |
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | Status of connector | `bool` | `true` | no |
+| <a name="input_failover_cxps"></a> [failover\_cxps](#input\_failover\_cxps) | Enable direct inter-vpc communication | `list(string)` | `[]` | no |
 | <a name="input_group"></a> [group](#input\_group) | Group to associate with connector | `string` | `""` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of connector | `string` | n/a | yes |
 | <a name="input_onboard_subnet"></a> [onboard\_subnet](#input\_onboard\_subnet) | Controls if subnet gets onboarded in place of entire VPC CIDR block | `bool` | `false` | no |
+| <a name="input_route_table_id"></a> [route\_table\_id](#input\_route\_table\_id) | ID of VPC default route table | `string` | `""` | no |
+| <a name="input_routing_options"></a> [routing\_options](#input\_routing\_options) | Custom routing options used to influence routing from cloud network to CXP | <pre>list(object({<br>    prefix_lists    = optional(list(string))<br>    route_option    = optional(string)<br>    route_table_id  = optional(string)<br>  }))</pre> | `[]` | no |
 | <a name="input_segment"></a> [segment](#input\_segment) | Segment to provision connector in | `string` | n/a | yes |
 | <a name="input_size"></a> [size](#input\_size) | Size of connector | `string` | `"SMALL"` | no |
-| <a name="input_subnets"></a> [subnets](#input\_subnets) | Onboard specific subnets in place of entire VPC CIDR block | <pre>list(object({<br>    cidr  = optional(string)<br>    id    = optional(string)<br>  }))</pre> | `[]` | no |
+| <a name="input_subnets"></a> [subnets](#input\_subnets) | Subnets to onboard in place of entire VPC CIDR block | <pre>list(object({<br>    subnet_id    = optional(string)<br>    subnet_cidr  = optional(string)<br>  }))</pre> | `[]` | no |
+| <a name="input_tgw_attachment"></a> [tgw\_attachment](#input\_tgw\_attachment) | Subnets to use for linked availability zones | <pre>list(object({<br>    az         = optional(string)<br>    subnet_id  = optional(string)<br>  }))</pre> | `[]` | no |
 | <a name="input_vpc_cidr"></a> [vpc\_cidr](#input\_vpc\_cidr) | CIDR of AWS VPC that is being connected | `list(string)` | `[]` | no |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | ID of AWS VPC that is being connected | `string` | n/a | yes |
 
