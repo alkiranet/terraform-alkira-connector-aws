@@ -61,4 +61,5 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_connector_id"></a> [connector\_id](#output\_connector\_id) | ID of connector |
+| <a name="output_implicit_group_id"></a> [implicit\_group\_id](#output\_implicit\_group\_id) | ID of implicit group automatically created with connector |
 <!-- END_TF_DOCS -->
