@@ -69,6 +69,7 @@ resource "alkira_connector_aws_vpc" "connector" {
   cxp                             = var.cxp
   direct_inter_vpc_communication  = var.direct_inter_vpc
   enabled                         = var.enabled
+  failover_cxps                   = var.failover_cxps
   group                           = data.alkira_group.group.name
   name                            = var.name
   segment_id                      = data.alkira_segment.segment.id
