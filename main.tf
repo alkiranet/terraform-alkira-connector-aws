@@ -48,7 +48,6 @@ locals {
     }
   ])
 
-  # filter tag ids
   tag_id_list = [
     for v in data.alkira_billing_tag.tag : v.id
   ]
