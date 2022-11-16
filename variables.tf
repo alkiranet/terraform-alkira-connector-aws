@@ -42,9 +42,25 @@ variable "name" {
   type         = string
 }
 
+variable "onboard_subnet" {
+  description = "Controls if subnet gets onboarded in place of entire VPC CIDR block"
+  type        = bool
+  default     = false
+}
+
 variable "segment" {
   description  = "Segment to provision connector in"
   type         = string
+}
+
+variable "subnets" {
+  description = "Onboard specific subnets in place of entire VPC CIDR block"
+
+  type = list(object({
+    cidr  = optional(string)
+    id    = optional(string)
+  }))
+  default = []
 }
 
 variable "size" {
@@ -61,4 +77,5 @@ variable "vpc_id" {
 variable "vpc_cidr" {
   description  = "CIDR of AWS VPC that is being connected"
   type         = list(string)
+  default      = []
 }
