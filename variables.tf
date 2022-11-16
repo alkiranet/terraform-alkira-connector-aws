@@ -20,9 +20,33 @@ variable "credential" {
   type         = string
 }
 
+variable "custom_routing" {
+  description  = "Controls if custom routing is used from cloud network to CXP"
+  type         = bool
+  default      = false
+}
+
+variable "custom_tgw" {
+  description  = "Controls if specific subnets are used for linked availability zones"
+  type         = bool
+  default      = false
+}
+
 variable "cxp" {
   description  = "CXP to provision connector in"
   type         = string
+}
+
+variable "direct_inter_vpc" {
+  description = "Enable direct inter-vpc communication"
+  type        = bool
+  default     = false
+}
+
+variable "route_table_id" {
+  description  = "ID of VPC default route table"
+  type         = string
+  default      = ""
 }
 
 variable "enabled" {
@@ -48,17 +72,28 @@ variable "onboard_subnet" {
   default     = false
 }
 
+variable "routing_options" {
+  description = "Custom routing options used to influence routing from cloud network to CXP"
+
+  type = list(object({
+    prefix_lists    = optional(list(string))
+    route_option    = optional(string)
+    route_table_id  = optional(string)
+  }))
+  default = []
+}
+
 variable "segment" {
   description  = "Segment to provision connector in"
   type         = string
 }
 
 variable "subnets" {
-  description = "Onboard specific subnets in place of entire VPC CIDR block"
+  description = "Subnets to onboard in place of entire VPC CIDR block"
 
   type = list(object({
-    cidr  = optional(string)
-    id    = optional(string)
+    subnet_id    = optional(string)
+    subnet_cidr  = optional(string)
   }))
   default = []
 }
@@ -68,6 +103,17 @@ variable "size" {
   type         = string
   default      = "SMALL"
 }
+
+variable "tgw_attachment" {
+  description = "Subnets to use for linked availability zones"
+
+  type = list(object({
+    az         = optional(string)
+    subnet_id  = optional(string)
+  }))
+  default = []
+}
+
 
 variable "vpc_id" {
   description  = "ID of AWS VPC that is being connected"
