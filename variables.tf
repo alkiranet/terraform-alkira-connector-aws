@@ -43,6 +43,12 @@ variable "direct_inter_vpc" {
   default     = false
 }
 
+variable "failover_cxps" {
+  description = "Enable direct inter-vpc communication"
+  type        = list(string)
+  default     = []
+}
+
 variable "route_table_id" {
   description  = "ID of VPC default route table"
   type         = string
