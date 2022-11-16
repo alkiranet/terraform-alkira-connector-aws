@@ -1,5 +1,5 @@
 # Alkira AWS Connector
-Terraform module that provisions [Alkira AWS Connector](https://registry.terraform.io/providers/alkiranet/alkira/latest/docs/resources/connector_aws_vpc). This can be used along with [AWS VPC Terraform module](https://github.com/terraform-aws-modules/terraform-aws-vpc) to handle the workflow _end-to-end_.
+Terraform module that provisions [Alkira AWS Connector](https://registry.terraform.io/providers/alkiranet/alkira/latest/docs/resources/connector_aws_vpc). This can be used along with [AWS VPC Terraform module](https://github.com/terraform-aws-modules/terraform-aws-vpc) to handle the workflow _end-to-end_. This module is currently in _beta_.
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
