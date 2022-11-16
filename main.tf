@@ -46,6 +46,19 @@ resource "alkira_connector_aws_vpc" "connector" {
   segment_id       = data.alkira_segment.segment.id
   size             = var.size
   vpc_id           = var.vpc_id
-  vpc_cidr         = var.vpc_cidr
+  vpc_cidr         = var.onboard_subnet ? null : var.vpc_cidr
+
+  # If bool == true, onboard custom subnets in place of entire VPC CIDR block
+  dynamic "vpc_subnet" {
+    for_each = {
+      for o in var.subnets : o.id => o
+      if var.onboard_subnet == true
+    }
+
+    content {
+      cidr = vpc_subnet.value.cidr
+      id   = vpc_subnet.value.id
+    }
+  }
 
 }
