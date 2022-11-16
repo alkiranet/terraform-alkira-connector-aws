@@ -41,9 +41,11 @@ No modules.
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | Status of connector | `bool` | `true` | no |
 | <a name="input_group"></a> [group](#input\_group) | Group to associate with connector | `string` | `""` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of connector | `string` | n/a | yes |
+| <a name="input_onboard_subnet"></a> [onboard\_subnet](#input\_onboard\_subnet) | Controls if subnet gets onboarded in place of entire VPC CIDR block | `bool` | `false` | no |
 | <a name="input_segment"></a> [segment](#input\_segment) | Segment to provision connector in | `string` | n/a | yes |
 | <a name="input_size"></a> [size](#input\_size) | Size of connector | `string` | `"SMALL"` | no |
-| <a name="input_vpc_cidr"></a> [vpc\_cidr](#input\_vpc\_cidr) | CIDR of AWS VPC that is being connected | `list(string)` | n/a | yes |
+| <a name="input_subnets"></a> [subnets](#input\_subnets) | Onboard specific subnets in place of entire VPC CIDR block | <pre>list(object({<br>    cidr  = optional(string)<br>    id    = optional(string)<br>  }))</pre> | `[]` | no |
+| <a name="input_vpc_cidr"></a> [vpc\_cidr](#input\_vpc\_cidr) | CIDR of AWS VPC that is being connected | `list(string)` | `[]` | no |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | ID of AWS VPC that is being connected | `string` | n/a | yes |
 
 ## Outputs
