@@ -30,7 +30,7 @@ data "alkira_segment" "segment" {
 locals {
 
   filter_custom_prefixes = flatten([
-    for rtb in var.routing_options : [
+    for rtb in var.vpc_route_table : [
       for pfx in rtb.prefix_lists : 
         pfx
     ]
@@ -41,9 +41,9 @@ locals {
   ]
 
   filter_routing_options = flatten([
-    for r in var.routing_options : {
+    for r in var.vpc_route_table : {
       id               = r.route_table_id
-      options          = r.route_option
+      options          = r.option
       prefix_list_ids  = [for pfx in r.prefix_lists : lookup(data.alkira_policy_prefix_list.prefix, pfx, null).id]
     }
   ])
@@ -92,7 +92,7 @@ resource "alkira_connector_aws_vpc" "connector" {
   # If bool == true, onboard custom subnets in place of entire VPC CIDR block
   dynamic "vpc_subnet" {
     for_each = {
-      for o in var.subnets : o.subnet_id => o
+      for o in var.vpc_subnet : o.subnet_id => o
       if var.onboard_subnet == true
     }
 
