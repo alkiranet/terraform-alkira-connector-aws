@@ -78,12 +78,12 @@ variable "onboard_subnet" {
   default     = false
 }
 
-variable "routing_options" {
-  description = "Custom routing options used to influence routing from cloud network to CXP"
+variable "vpc_route_table" {
+  description = "Custom options used to influence routing from cloud network to CXP"
 
   type = list(object({
-    prefix_lists    = optional(list(string))
-    route_option    = optional(string)
+    option          = optional(string)
+    prefix_lists    = optional(list(string), [])
     route_table_id  = optional(string)
   }))
   default = []
@@ -94,7 +94,7 @@ variable "segment" {
   type         = string
 }
 
-variable "subnets" {
+variable "vpc_subnet" {
   description = "Subnets to onboard in place of entire VPC CIDR block"
 
   type = list(object({
