@@ -2,23 +2,8 @@
 Terraform module that provisions [Alkira AWS Connector](https://registry.terraform.io/providers/alkiranet/alkira/latest/docs/resources/connector_aws_vpc). This can be used along with [AWS VPC Terraform module](https://github.com/terraform-aws-modules/terraform-aws-vpc) to handle the complete VPC _lifecycle_. This module is currently in _beta_.
 
 ## Basic Usage
+You can find detailed examples [here.](./examples)
 ```hcl
-module "create_vpc" {
-  source = "terraform-aws-modules/vpc/aws"
-
-  name = "vpc-east-dev"
-  cidr = "10.150.0.0/20"
-
-  azs             = ["us-east-2b", "us-east-2c"]
-  private_subnets = ["10.150.1.0/24", "10.150.2.0/24"]
-
-  tags = {
-    Terraform = "true"
-    Environment = "dev"
-  }
-
-}
-
 module "connect_vpc" {
   source = "alkiranet/connector-aws/alkira"
 
@@ -29,10 +14,8 @@ module "connect_vpc" {
   group             = "cloud"
   aws_account_id    = "123456789"
   aws_region        = "us-east-2"
-  vpc_cidr          = [module.create_vpc.vpc_cidr_block]
-  vpc_id            = module.create_vpc.vpc_id
-
-  depends_on = [module.create_vpc]
+  vpc_cidr          = ["10.5.0.0/20"]
+  vpc_id            = "vpc-0123456789"
 
 }
 ```
