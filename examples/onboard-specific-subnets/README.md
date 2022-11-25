@@ -4,6 +4,21 @@ The following example configuration will create an AWS VPC and subnets using the
 - Remove the parameter for **vpc_cidr**
 - Add the **subnets** block with the appropriate values
 
+```hcl
+onboard_subnet = true
+
+vpc_subnet = [
+  {
+    subnet_cidr = "10.5.1.0/24"
+    subnet_id   = "subnet-01234"
+  },
+  {
+    subnet_cidr = "10.5.2.0/24"
+    subnet_id   = "subnet-56789"
+  }
+]
+```
+
 :warning: The following resources must exist in _Alkira_ before referencing them in this configuration:
 - [Billing Tag](https://registry.terraform.io/providers/alkiranet/alkira/latest/docs/resources/billing_tag)
 - [Credential](https://registry.terraform.io/providers/alkiranet/alkira/latest/docs/resources/credential_aws_vpc)

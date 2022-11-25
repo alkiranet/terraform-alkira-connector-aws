@@ -7,6 +7,8 @@ The following example configuration will create an AWS VPC and subnets using the
 By default, Alkira will override the existing default route and route traffic to the _CXP_. As an alternative, you can provide a list of prefixes for which traffic must be routed. In the example below, we reference two different subnets. The first subnet, we set to **ADVERTISE_DEFAULT_ROUTE** while the second subnet we **ADVERTISE_CUSTOM_PREFIX**:
 
 ```hcl
+custom_routing = true
+
 vpc_route_table = [
     {
       option          = "ADVERTISE_DEFAULT_ROUTE"
